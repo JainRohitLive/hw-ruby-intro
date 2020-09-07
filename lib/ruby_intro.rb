@@ -1,35 +1,54 @@
-# When done, submit this entire file to the autograder.
-
 # Part 1
 
 def sum arr
-  # YOUR CODE HERE
+  arr.inject(0, :+)
 end
 
 def max_2_sum arr
-  # YOUR CODE HERE
+  arr.max(2).reduce(0, :+)
 end
 
 def sum_to_n? arr, n
-  # YOUR CODE HERE
+  if arr.length < 2
+	  return false
+  end
+  return !!arr.combination(2).find{|x,y| x+y==n}
 end
 
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  return "Hello, " + name
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  return s =~ /\A(?=[a-z])(?=[^aeiou])/i
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  if s == "0"
+	  return true
+  end
+  return s =~ /^[10]*00$/
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+
+	attr_accessor :isbn
+	attr_accessor :price
+
+	def initialize(isbn,price)
+		if isbn.empty? || price <= 0 
+			raise ArgumentError
+		end
+		@isbn=isbn
+		@price=price
+	end
+
+	def price_as_string
+		format("$%.2f", @price)
+	end
+	
 end
